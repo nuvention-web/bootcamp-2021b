@@ -1,0 +1,50 @@
+diff --git a/node_modules/react-native-calendars/src/agenda/index.js b/node_modules/react-native-calendars/src/agenda/index.js
+index 1f17071..7dd202f 100644
+--- a/node_modules/react-native-calendars/src/agenda/index.js
++++ b/node_modules/react-native-calendars/src/agenda/index.js
+@@ -1,5 +1,5 @@
+ import React, {Component} from 'react';
+-import * as ReactNative from 'react-native';
++import {Text, View, Dimensions, Animated, Platform} from 'react-native';
+ import PropTypes from 'prop-types';
+ import XDate from 'xdate';
+
+@@ -15,11 +15,10 @@ import {AGENDA_CALENDAR_KNOB} from '../testIDs';
+ const HEADER_HEIGHT = 104;
+ const KNOB_HEIGHT = 24;
+ //Fallback for react-native-web or when RN version is < 0.44
+-const {Text, View, Dimensions, Animated, ViewPropTypes} = ReactNative;
+ const viewPropTypes =
+-  typeof document !== 'undefined'
++  typeof document !== 'undefined' || Platform.OS === 'web'
+     ? PropTypes.shape({style: PropTypes.object})
+-    : ViewPropTypes || View.propTypes;
++    : require('react-native').ViewPropTypes || View.propTypes;
+
+ /**
+  * @description: Agenda component
+diff --git a/node_modules/react-native-calendars/src/calendar/index.js b/node_modules/react-native-calendars/src/calendar/index.js
+index 92d5bd5..815bc98 100644
+--- a/node_modules/react-native-calendars/src/calendar/index.js
++++ b/node_modules/react-native-calendars/src/calendar/index.js
+@@ -1,5 +1,5 @@
+ import React, {Component} from 'react';
+-import * as ReactNative from 'react-native';
++import {Platform, View} from 'react-native';
+ import PropTypes from 'prop-types';
+ import XDate from 'xdate';
+
+@@ -17,11 +17,10 @@ import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+ import {SELECT_DATE_SLOT} from '../testIDs';
+
+ //Fallback for react-native-web or when RN version is < 0.44
+-const {View, ViewPropTypes} = ReactNative;
+ const viewPropTypes =
+-  typeof document !== 'undefined'
++  typeof document !== 'undefined' || Platform.OS === 'web'
+     ? PropTypes.shape({style: PropTypes.object})
+-    : ViewPropTypes || View.propTypes;
++    : require('react-native').ViewPropTypes || View.propTypes;
+ const EmptyArray = [];
+
+ /**
